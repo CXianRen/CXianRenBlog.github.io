@@ -77,7 +77,7 @@
                 $.get("post.json", function (data, status) {
                     // 点击加载对应文章 (预先绑定事件)
                     $(".container").on("click",".ti", function () {
-                        var post_name = $(this).text;
+                        var post_name = $(this).text();
                         console.log("clik" + post_name);
                         load_post(post_name);
                     })
