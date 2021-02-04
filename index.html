@@ -75,6 +75,13 @@
             function () {
                 console.log("main page loaded ")
                 $.get("post.json", function (data, status) {
+                    // 点击加载对应文章 (预先绑定事件)
+                    $(".container").delegate(".posts .post .post-titile .ti", "click", function () {
+                        var post_name = $(this).test;
+                        console.log("clik" + post_name);
+                        load_post("post/" + post_name + ".md");
+                    })
+
                     console.log(data);
                     postdata = data;
                     for (var key in postdata) {
@@ -104,12 +111,6 @@
 
     $(document).ready(function () {
         load_mainpage();
-        // 点击加载对应文章
-        $(".post-title").delegate(".ti","click",function () {
-            var post_name = $(this).test;
-            console.log("clik" + post_name);
-            load_post("post/" + post_name + ".md");
-        })
     });
 </script>
 
