@@ -1,0 +1,158 @@
+body {
+    color: #555;
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', Arial, Serif;
+    font-size: 100%;
+    font-weight: 400;
+    line-height: 1.85;
+    letter-spacing: 0.01rem;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 42em;
+    /* background-color: rgb(224, 96, 22); */
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.proverbs {
+    margin-top: 0;
+}
+
+.post {
+    position: relative;
+    /* margin-bottom: 2rem; */
+}
+
+.post-title {
+    margin-top: 0px;
+}
+
+.post-title:after {
+    content: '';
+    display: block;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    position: absolute;
+    top: 30px;
+    left: 0px;
+    z-index: -1;
+}
+
+.post-title a {
+    color: #333;
+    background: #fff;
+    line-height: 60px;
+    position: relative;
+    padding: 0 14px;
+    margin-left: 20px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.post-title a:after,
+.post-title a:before {
+    content: '';
+    position: absolute;
+    border: 3px solid transparent;
+    top: 13px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.post-title a:before {
+    left: -23px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.post-title a:after {
+    -webkit-transform: rotate(225deg);
+    -ms-transform: rotate(225deg);
+    transform: rotate(225deg);
+    right: -23px;
+}
+
+.post-title a:hover:before,
+.post-title a:hover:after {
+    border-top-color: #ccc;
+    border-right-color: #ccc;
+}
+
+.post-title a:hover:before {
+    left: -3px;
+}
+
+.post-title a:hover:after {
+    right: -3px;
+}
+
+.post-date {
+    color: #ccc;
+    font-size: 14px;
+    margin-top: -35px;
+    display: block;
+    position: relative;
+}
+
+.post-tags {
+    color: #ccc;
+    display: block;
+    font-size: 14px;
+    position: relative;
+    margin-top: -25px;
+    margin-left: 125px;
+    /* text-align: right; */
+    max-width: 525px;
+}
+
+.post-tags a {
+    color: #ccc;
+    margin-left: 10px;
+}
+
+.pagination {
+    position: relative;
+    margin-top: 5em;
+}
+
+.pagination:before,
+.pagination:after {
+    content: '';
+    display: table;
+}
+
+.pagination:after {
+    clear: both;
+}
+
+.pagination .previous {
+    float: left;
+}
+
+.pagination .next {
+    float: right;
+}
+
+.footer {
+    color: #95a5a6;
+    font-size: 14px;
+    text-align: center;
+    margin: 2rem 0 1rem;
+}
+
+.footer a {
+    color: #333;
+}

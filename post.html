@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <link href="scripts/md/css/editormd.preview.css" rel="stylesheet" />
+    <link href="scripts/md/css/editormd.css" rel="stylesheet" />
+
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="scripts/md/editormd.js"></script>
+    <script src="scripts/md/lib/marked.min.js"></script>
+    <script src="scripts/md/lib/prettify.min.js"></script>
+    <script src="scripts/md/lib/raphael.min.js"></script>
+    <script src="scripts/md/lib/underscore.min.js"></script>
+    <script src="scripts/md/lib/sequence-diagram.min.js"></script>
+    <script src="scripts/md/lib/flowchart.min.js"></script>
+    <script src="scripts/md/lib/jquery.flowchart.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/blog.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 style="margin-bottom: 0px;"><a href="https://cxianren.github.io/">闲人 > CXR</a></h1>
+            <a style="margin-left: 10px;">Github</a><a style="margin-left: 10px; color: #ccc;">|</a><a
+                style="margin-left: 10px;">me</a>
+        </div>
+        <hr>
+        <div class="posts">
+            <div class="post">
+                <h2 class="post-title">
+                    <a href="">这是测试文章1</a>
+                </h2>
+                <span class="post-date">Jan 10, 2021</span>
+                <span class="post-tags"><a>test-class</a> <a>|</a><a>test-tag</a> </span>
+            </div>
+            <div id="testEditorMdview" class="testEditoclass">
+                <textarea id="appendTest" style="display:none;"></textarea>
+            </div>
+        </div>
+        <p style="visibility: hidden;"></p>
+    </div>
+</body>
+
+<script>
+    function mdToHml(content) {
+        //先对容器初始化，在需要展示的容器中创建textarea隐藏标签，
+        $("#testEditorMdview").html('<textarea id="appendTest" style="display:none;"></textarea>');
+        $("#appendTest").val(content); //将需要转换的内容加到转换后展示容器的textarea隐藏标签中
+
+        editormd.markdownToHTML("testEditorMdview", {
+            htmlDecode: "style,script,iframe", //可以过滤标签解码
+            emoji: true,
+            taskList: true,
+            tex: true,              // 默认不解析
+            flowChart: true,        // 默认不解析
+            sequenceDiagram: true,  // 默认不解析
+        });
+    }
+    $("p").load("http://localhost/test.md")
+    mdToHml()
+</script>
