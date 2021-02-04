@@ -60,7 +60,7 @@
     function main_page_render(title, cato, tag, t) {
         var a = '<div class="post">';
         a += '<h2 class="post-title">';
-        a += '<a href="">' + title + '</a>';
+        a += '<a class="ti">' + title + '</a>';
         a += '</h2>';
         a += '<span class="post-date">' + t + '</span>';
         a += '<span class="post-tags"><a>' + cato + '</a> <a>|</a><a>' + tag + '</a> </span>';
@@ -88,11 +88,11 @@
 
     // load post
     function load_post(post_url) {
-        console.log("load:" + post_url)
+        (".container").empty();
         $(".container").load("template/post.html",
             function () {
                 console.log("loading container")
-                $.get("post/test.md", function (data, status) {
+                $.get(post_url,function (data, status) {
                     mdToHml(data)
                 })
             })
@@ -100,6 +100,12 @@
 
     $(document).ready(function () {
         load_mainpage();
+        // 点击加载对应文章
+        $(".ti").click(function(){
+            var post_name=$(this).test();
+            console.log("clik"+post_name);
+            load_post("post/"+post_name+".md");
+        })
     });
 </script>
 
