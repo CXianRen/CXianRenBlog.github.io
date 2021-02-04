@@ -57,8 +57,10 @@
     };
 
     $(document).ready(function () {
-        $("container").load("template/post.html",
-            function (eventobj, jqeventobj) {
+        console.log("main page loaded ")
+        $(".container").load("template/post.html",
+            function () {
+                console.log("loading container")
                 $.get("post/test.md", function (data, status) {
                     mdToHml(data)
                 })
