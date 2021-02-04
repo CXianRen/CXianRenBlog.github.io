@@ -58,7 +58,7 @@
             });
         }
 
-        $.get("post/test.md", function (data, status) {
+        $.post("post/test.md", function (data, status) {
             mdToHml(data)
             // alert("数据: " + data + "\n状态: " + status);
         })
