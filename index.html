@@ -82,6 +82,13 @@
                         main_page_render(key, postdata[key]["class"], postdata[key]["tag"], postdata[key][
                             "date"
                         ])
+
+                        // 点击加载对应文章
+                        $("ti").click(function () {
+                            var post_name = $(this).test;
+                            console.log("clik" + post_name);
+                            load_post("post/" + post_name + ".md");
+                        })
                     };
 
                 })
@@ -102,12 +109,6 @@
 
     $(document).ready(function () {
         load_mainpage();
-        // 点击加载对应文章
-        $("ti").click(function () {
-            var post_name = $(this).test;
-            console.log("clik" + post_name);
-            load_post("post/" + post_name + ".md");
-        })
     });
 </script>
 
