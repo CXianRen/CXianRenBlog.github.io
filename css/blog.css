@@ -156,3 +156,49 @@ a:focus {
 .footer a {
     color: #333;
 }
+
+button,
+.btn {
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #ccc;
+    cursor: pointer;
+    display: inline-block;
+    font-family: inherit;
+    font-size: 85%;
+    line-height: normal;
+    padding: 0.5rem 0.75rem;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+button::-moz-focus-inner,
+.btn::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+button:hover,
+button:focus,
+.btn:hover,
+.btn:focus {
+    color: #7fdbff;
+    border: 1px solid #7fdbff;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-decoration: none;
+}
+
+button:active,
+.btn:active {
+    color: #0074d9;
+    border: 1px solid #0074d9;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
