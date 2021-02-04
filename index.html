@@ -78,6 +78,10 @@
     $(document).ready(function () {
         $.get("post.json", function (data, status) {
             console.log(data);
+            for (post in data){
+                console.log(post)
+            };
+
             load_mainpage();
         })
         
