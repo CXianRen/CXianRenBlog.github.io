@@ -90,7 +90,7 @@
 
     // load post
     function load_post(post_url) {
-        (".container").empty();
+        $(".container").empty();
         $(".container").load("template/post.html",
             function () {
                 console.log("loading container")
@@ -102,14 +102,13 @@
 
     $(document).ready(function () {
         load_mainpage();
+        // 点击加载对应文章
+        $("ti").click(function () {
+            var post_name = $(this).test;
+            console.log("clik" + post_name);
+            load_post("post/" + post_name + ".md");
+        })
     });
-
-    // 点击加载对应文章
-    $(".ti").click(function () {
-        var post_name = $(this).test();
-        console.log("clik" + post_name);
-        load_post("post/" + post_name + ".md");
-    })
 </script>
 
 </html>
