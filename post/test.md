@@ -1,14 +1,12 @@
 + 效果
-![](./src/自定义导航栏效果01.PNG)
+![效果图](img/test/test.png)
 
 + app.json设置
 ```json
 //将window字段修改为如下:
-{
   "window":{
     "navigationStyle": "custom"
-  },  
-}
+  },
 ```
 
 + wxml
