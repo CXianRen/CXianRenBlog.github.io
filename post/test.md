@@ -3,7 +3,7 @@
 
 + app.json设置
 ```json
-//将window字段修改为如下
+//将window字段修改为如下:
 {
   "window":{
     "navigationStyle": "custom"
