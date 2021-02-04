@@ -38,7 +38,7 @@
                 <textarea id="appendTest" style="display:none;"></textarea>
             </div>
         </div>
-        <p style="visibility: hidden;"></p>
+        <testarea style="visibility: hidden;"></testarea>
     </div>
 </body>
 
@@ -58,7 +58,7 @@
         });
     }
     
-    $.load("post/test.md",function(responseTxt,statusTxt,xhr){
+    $(.testarea)load("post/test.md",function(responseTxt,statusTxt,xhr){
         if(statusTxt=="success"){
            alert("responseTxt");
         }
