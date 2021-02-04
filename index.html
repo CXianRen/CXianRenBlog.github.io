@@ -77,9 +77,9 @@
                 $.get("post.json", function (data, status) {
                     // 点击加载对应文章 (预先绑定事件)
                     $(".container").on("click",".ti", function () {
-                        var post_name = $(this).test;
+                        var post_name = $(this).text;
                         console.log("clik" + post_name);
-                        load_post("post/" + post_name + ".md");
+                        load_post(post_name);
                     })
 
                     console.log(data);
@@ -98,13 +98,17 @@
     };
 
     // load post
-    function load_post(post_url) {
+    function load_post(post_name) {
         $(".container").empty();
         $(".container").load("template/post.html",
             function () {
-                console.log("loading container")
-                $.get(post_url, function (data, status) {
-                    mdToHml(data)
+                console.log("loading container");
+                $.get("post/"+post_name+".md", function (data, status) {
+                    $(".post-title a ").text(post_name);
+                    $(".post-date").text(postdata[post_name]["date"]);
+                    $(".ca").text(postdata[post_name]["class"]);
+                    $(".ta").text(postdata[post_name]["tag"]);
+                    mdToHml(data);
                 })
             })
     }
