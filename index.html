@@ -55,9 +55,21 @@
             sequenceDiagram: true, // 默认不解析
         });
     };
+    // load main page
+    function oad_mainpage() {
+        $(".container").load("template/mainpage.html",
+            function () {
+                console.log("main page loaded ")
+                // console.log("loading container")
+                // $.get("post/test.md", function (data, status) {
+                //     mdToHml(data)
+                // })
+            })
+    };
 
-    $(document).ready(function () {
-        console.log("main page loaded ")
+    // load post
+    function load_post(post_url) {
+        console.log("load:"+post_url)
         $(".container").load("template/post.html",
             function () {
                 console.log("loading container")
@@ -65,8 +77,11 @@
                     mdToHml(data)
                 })
             })
-    });
+    }
 
+    $(document).ready(function () {
+        load_mainpage();
+    });
 </script>
 
 </html>
