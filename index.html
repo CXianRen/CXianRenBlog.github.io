@@ -55,17 +55,39 @@
             sequenceDiagram: true, // 默认不解析
         });
     };
+
+    //  main page post render 
+    function main_page_render(title, cato, tag, t) {
+        a = '<div class="post">';
+        a += '<h2 class="post-title">';
+        a += '<a href="">' + title + '这是测试文章1</a>';
+        a += '</h2>';
+        a += '<span class="post-date">' + t + '</span>';
+        a += '<span class="post-tags"><a>' + cato + '</a> <a>|</a><a>' + tag + '</a> </span>';
+        a += '</div>';
+        $(".posts").append(a);
+    }
+
     // load main page
     function load_mainpage() {
         $(".container").load("template/mainpage.html",
             function () {
                 console.log("main page loaded ")
+                $.get("post.json", function (data, status) {
+                    console.log(data);
+                    postdata=data;
+                    for (var key in postdata) {
+                        console.log(key,postdata[key])
+                        main_page_render(key,postdata[key]["cato"],postdata[key]["tag"],postdata[key]["t"])
+                    };
+
+                })
             })
     };
 
     // load post
     function load_post(post_url) {
-        console.log("load:"+post_url)
+        console.log("load:" + post_url)
         $(".container").load("template/post.html",
             function () {
                 console.log("loading container")
@@ -76,15 +98,7 @@
     }
 
     $(document).ready(function () {
-        $.get("post.json", function (data, status) {
-            console.log(data);
-            for (post in data){
-                console.log(post)
-            };
-
-            load_mainpage();
-        })
-        
+        load_mainpage();
     });
 </script>
 
