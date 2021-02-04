@@ -57,6 +57,13 @@
             sequenceDiagram: true,  // 默认不解析
         });
     }
-    $("p").load("post/test.md")
+    
+    $.load("post/test.md",function(responseTxt,statusTxt,xhr){
+        if(statusTxt=="success"){
+           alert("responseTxt");
+        }
+        if(statusTxt=="error")
+            alert("Error: "+xhr.status+": "+xhr.statusText);
+        };)
     mdToHml()
 </script>
