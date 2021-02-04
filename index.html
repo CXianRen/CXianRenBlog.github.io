@@ -76,7 +76,7 @@
     }
 
     $(document).ready(function () {
-        get("post.json", function (data, status) {
+        $.get("post.json", function (data, status) {
             console.log(data);
             load_mainpage();
         })
