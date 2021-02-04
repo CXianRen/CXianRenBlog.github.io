@@ -105,7 +105,7 @@
     $(document).ready(function () {
         load_mainpage();
         // 点击加载对应文章
-        $(".post").delegate(".ti","click",function () {
+        $(".post-title").delegate(".ti","click",function () {
             var post_name = $(this).test;
             console.log("clik" + post_name);
             load_post("post/" + post_name + ".md");
