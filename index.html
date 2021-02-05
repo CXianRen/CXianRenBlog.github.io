@@ -103,7 +103,7 @@
         $(".container").empty();
         // 前后 按键绑定事件
 
-        $(".container").on("click", ".btn previous", function () {
+        $(".container").on("click", ".previous", function () {
             if (postdata[current_post]["pre"] != "") {
                 load_post(postdata[current_post]["pre"]);
             } else {
@@ -111,7 +111,7 @@
             }
         });
 
-        $(".container").on("click", "btn next", function () {
+        $(".container").on("click", ".next", function () {
             if (postdata[current_post]["next"] != "") {
                 load_post(postdata[current_post]["next"]);
             } else {
