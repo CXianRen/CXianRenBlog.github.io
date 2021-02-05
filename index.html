@@ -73,8 +73,9 @@
         console.log("loading page name");
         $(".container").get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/",
             function(data, status){
+                console.log("tiems:")
                 for (item in data){
-                    console(item);
+                    console.log(item);
                 }
             }
             );
