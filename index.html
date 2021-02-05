@@ -68,9 +68,18 @@
         $(".posts").append(a);
         a = "";
     }
-
+    // load all post
+    function load_all_page_name(){
+        $(".container").get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/",
+            function(data, status){
+                for (item in data){
+                    console(item);
+                }
+            }
+            );
+    }
     // load main page
-    function load_mainpage() {
+    function load_mainpage() {    
         current_post = "";
         $(".container").load("template/mainpage.html",
             function () {
@@ -135,8 +144,8 @@
     }
 
     $(document).ready(function () {
-
         load_mainpage();
+        load_all_page_name();
     });
 </script>
 
