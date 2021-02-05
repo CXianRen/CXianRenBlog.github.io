@@ -112,15 +112,16 @@
                     $(".ta").text(postdata[post_name]["tag"]);
                     // 前后 按键绑定事件
                     if (postdata[current_post]["pre"] != "") {
-                        $(".container").on("click", "btn previous", load_post(postdata[current_post][
-                            "pre"]));
+                        $(".container").on("click", "btn previous", function(){
+                            load_post(postdata[current_post]["pre"]);});
                     } else {
                         $(".container").on("click", "btn previous", function () {
                             console.log("no more post")
                         });
                     }
                     if (postdata[current_post]["next"] != "") {
-                        $(".container").on("click", "btn next", load_post(postdata[current_post]["next"]));
+                        $(".container").on("click", "btn next", function(){
+                            load_post(postdata[current_post]["next"]);});
                     } else {
                         $(".container").on("click", "btn next", function () {
                             console.log("no more post")
