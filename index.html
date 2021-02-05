@@ -70,6 +70,7 @@
     }
     // load all post
     function load_all_page_name(){
+        console.log("loading page name");
         $(".container").get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/",
             function(data, status){
                 for (item in data){
