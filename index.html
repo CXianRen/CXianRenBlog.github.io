@@ -101,6 +101,26 @@
     // load post
     function load_post(post_name) {
         $(".container").empty();
+        // 前后 按键绑定事件
+        if (postdata[current_post]["pre"] != "") {
+            $(".container").on("click", "btn previous", function () {
+                load_post(postdata[current_post]["pre"]);
+            });
+        } else {
+            $(".container").on("click", "btn previous", function () {
+                console.log("no more post")
+            });
+        }
+        if (postdata[current_post]["next"] != "") {
+            $(".container").on("click", "btn next", function () {
+                load_post(postdata[current_post]["next"]);
+            });
+        } else {
+            $(".container").on("click", "btn next", function () {
+                console.log("no more post")
+            });
+        }
+
         $(".container").load("template/post.html",
             function () {
                 console.log("loading container");
@@ -110,24 +130,6 @@
                     $(".post-date").text(postdata[post_name]["date"]);
                     $(".ca").text(postdata[post_name]["class"]);
                     $(".ta").text(postdata[post_name]["tag"]);
-                    // 前后 按键绑定事件
-                    if (postdata[current_post]["pre"] != "") {
-                        $(".container").on("click", "btn previous", function(){
-                            load_post(postdata[current_post]["pre"]);});
-                    } else {
-                        $(".container").on("click", "btn previous", function () {
-                            console.log("no more post")
-                        });
-                    }
-                    if (postdata[current_post]["next"] != "") {
-                        $(".container").on("click", "btn next", function(){
-                            load_post(postdata[current_post]["next"]);});
-                    } else {
-                        $(".container").on("click", "btn next", function () {
-                            console.log("no more post")
-                        });
-                    }
-
                     // 渲染 readme
                     mdToHml(data);
 
