@@ -71,7 +71,7 @@
     // load all post
     function load_all_page_name(){
         console.log("loading page name");
-        $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/?access_token=9bfc4b345fd6d50bc10ddf94365e2fda0539a3b1",
+        $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/?private_token=9bfc4b345fd6d50bc10ddf94365e2fda0539a3b1",
             function(data, status){
                 console.log("tiems:")
                 for (item in data){
