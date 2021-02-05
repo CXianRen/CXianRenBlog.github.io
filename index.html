@@ -71,12 +71,13 @@
 
     // load main page
     function load_mainpage() {
+        current_post = "";
         $(".container").load("template/mainpage.html",
             function () {
                 console.log("main page loaded ")
                 $.get("post.json", function (data, status) {
                     // 点击加载对应文章 (预先绑定事件)
-                    $(".container").on("click",".ti", function () {
+                    $(".container").on("click", ".ti", function () {
                         var post_name = $(this).text();
                         console.log("clik" + post_name);
                         load_post(post_name);
@@ -103,17 +104,38 @@
         $(".container").load("template/post.html",
             function () {
                 console.log("loading container");
-                $.get("post/"+post_name+".md", function (data, status) {
+                $.get("post/" + post_name + ".md", function (data, status) {
+                    current_post = post_name;
                     $(".post-title a ").text(post_name);
                     $(".post-date").text(postdata[post_name]["date"]);
                     $(".ca").text(postdata[post_name]["class"]);
                     $(".ta").text(postdata[post_name]["tag"]);
+                    // 前后 按键绑定事件
+                    if (postdata[current_post]["pre"] != "") {
+                        $(".container").on("click", "btn previous", load_post(postdata[current_post][
+                            "pre"]));
+                    } else {
+                        $(".container").on("click", "btn previous", function () {
+                            console.log("no more post")
+                        });
+                    }
+                    if (postdata[current_post]["next"] != "") {
+                        $(".container").on("click", "btn next", load_post(postdata[current_post]["next"]));
+                    } else {
+                        $(".container").on("click", "btn next", function () {
+                            console.log("no more post")
+                        });
+                    }
+
+                    // 渲染 readme
                     mdToHml(data);
+
                 })
             })
     }
 
     $(document).ready(function () {
+
         load_mainpage();
     });
 </script>
