@@ -102,24 +102,22 @@
     function load_post(post_name) {
         $(".container").empty();
         // 前后 按键绑定事件
-        if (postdata[current_post]["pre"] != "") {
-            $(".container").on("click", "btn previous", function () {
+
+        $(".container").on("click", "btn previous", function () {
+            if (postdata[current_post]["pre"] != "") {
                 load_post(postdata[current_post]["pre"]);
-            });
-        } else {
-            $(".container").on("click", "btn previous", function () {
+            } else {
                 console.log("no more post")
-            });
-        }
-        if (postdata[current_post]["next"] != "") {
-            $(".container").on("click", "btn next", function () {
+            }
+        });
+
+        $(".container").on("click", "btn next", function () {
+            if (postdata[current_post]["next"] != "") {
                 load_post(postdata[current_post]["next"]);
-            });
-        } else {
-            $(".container").on("click", "btn next", function () {
+            } else {
                 console.log("no more post")
-            });
-        }
+            }
+        });
 
         $(".container").load("template/post.html",
             function () {
@@ -132,7 +130,6 @@
                     $(".ta").text(postdata[post_name]["tag"]);
                     // 渲染 readme
                     mdToHml(data);
-
                 })
             })
     }
