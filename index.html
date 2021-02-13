@@ -70,17 +70,23 @@
     }
     // load all post
     myposts={};
+    myposts_in_class={};
+    myposts_in_tag={};
     function load_all_page_name(){
         console.log("loading page name");
         $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/?private_token=9bfc4b345fd6d50bc10ddf94365e2fda0539a3b1",
             function(data, status){     
                 for (item in data){
-                    console.log("tiems:")
+                    console.log(item)
                     var temp=data[item]["name"].split(".")[0].split("_");
-                    console.log();
-                    myposts[temp[0]]={"class":temp[1],"tag":temp[2]};
+                    myposts[temp[0]]={"url":data[item]["name"],"name":temp[0],"class":temp[1],"tag":temp[2]};
+                    myposts_in_class[temp[1]]={"url":data[item]["name"],"name":temp[0],"tag":temp[2]};
+                    myposts_in_class[temp[2]]={"url":data[item]["name"],"name":temp[0],"class":temp[1]};
+                    
                 }
-                console.log(myposts)
+                console.log(myposts);
+                console.log(myposts_in_class);
+                console.log(myposts_in_tag);
             }
             );
     }
