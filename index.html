@@ -85,7 +85,7 @@
                     }
                     myposts_in_class[temp[1]].push({"url":data[item]["name"],"name":temp[0],"tag":temp[2]});
     
-                    if(typeof(myposts_in_class[temp[2]])){
+                    if(typeof(myposts_in_class[temp[2]])== undefined){
                         myposts_in_class[temp[2]]=new Array();
                     }
                     myposts_in_tag[temp[2]].push({"url":data[item]["name"],"name":temp[0],"class":temp[1]});
