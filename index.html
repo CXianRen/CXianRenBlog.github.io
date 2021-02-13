@@ -69,7 +69,7 @@
         a = "";
     }
     // load all post
-    myposts=[];
+    myposts=new Array();
     myposts_in_class={};
     myposts_in_tag={};
     function load_all_page_name(){
@@ -79,16 +79,16 @@
                 for (item in data){
                     console.log(item)
                     var temp=data[item]["name"].split(".")[0].split("_");
-                    myposts.append({"url":data[item]["name"],"name":temp[0],"class":temp[1],"tag":temp[2]});
+                    myposts.push({"url":data[item]["name"],"name":temp[0],"class":temp[1],"tag":temp[2]});
                     if(myposts_in_class[temp[1]]==""){
-                        myposts_in_class[temp[1]]=[];
+                        myposts_in_class[temp[1]]=new Array();
                     }
-                    myposts_in_class[temp[1]].append({"url":data[item]["name"],"name":temp[0],"tag":temp[2]});
+                    myposts_in_class[temp[1]].push({"url":data[item]["name"],"name":temp[0],"tag":temp[2]});
     
                     if(myposts_in_class[temp[2]]==""){
-                        myposts_in_class[temp[2]]=[];
+                        myposts_in_class[temp[2]]=new Array();
                     }
-                    myposts_in_tag[temp[2]].append({"url":data[item]["name"],"name":temp[0],"class":temp[1]});
+                    myposts_in_tag[temp[2]].push({"url":data[item]["name"],"name":temp[0],"class":temp[1]});
                     
                 }
                 console.log(myposts);
