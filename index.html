@@ -81,13 +81,13 @@
                     var temp=data[item]["name"].split(".")[0].split("_");
                     myposts.push({"url":data[item]["name"],"name":temp[0],"class":temp[1],"tag":temp[2]});
                     console.log("type:"+typeof(myposts_in_class[temp[1]]))
-                    if(typeof(myposts_in_class[temp[1]]) == undefined ){
+                    if(typeof(myposts_in_class[temp[1]]) === undefined ){
                         console.log("undefine");
                         myposts_in_class[temp[1]]=new Array();
                     }
                     myposts_in_class[temp[1]].push({"url":data[item]["name"],"name":temp[0],"tag":temp[2]});
     
-                    if(typeof(myposts_in_class[temp[2]])== undefined){
+                    if(typeof(myposts_in_class[temp[2]]) === undefined){
                         myposts_in_class[temp[2]]=new Array();
                     }
                     myposts_in_tag[temp[2]].push({"url":data[item]["name"],"name":temp[0],"class":temp[1]});
