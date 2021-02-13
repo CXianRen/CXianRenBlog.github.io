@@ -73,11 +73,14 @@
     function load_all_page_name(){
         console.log("loading page name");
         $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/?private_token=9bfc4b345fd6d50bc10ddf94365e2fda0539a3b1",
-            function(data, status){
-                console.log("tiems:")
+            function(data, status){     
                 for (item in data){
-                    console.log(data[item]["name"].split("_"));
+                    console.log("tiems:")
+                    n,c,t=data[item]["name"].split(".")[0].split("_");
+                    console.log();
+                    myposts["n"]={"class":c,"tag":t};
                 }
+                console.log(myposts)
             }
             );
     }
