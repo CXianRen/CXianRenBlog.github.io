@@ -76,9 +76,9 @@
             function(data, status){     
                 for (item in data){
                     console.log("tiems:")
-                    n,c,t=data[item]["name"].split(".")[0].split("_");
+                    var temp=data[item]["name"].split(".")[0].split("_");
                     console.log();
-                    myposts["n"]={"class":c,"tag":t};
+                    myposts[temp[0]]={"class":temp[1],"tag":temp[2]};
                 }
                 console.log(myposts)
             }
