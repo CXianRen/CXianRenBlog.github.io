@@ -3,12 +3,10 @@
 
 + app.json设置
 ```json
-  将window字段修改为如下
-
+//将window字段修改为如下
   "window":{
     "navigationStyle": "custom"
-  },  
-
+  }, 
 ```
 
 + wxml
@@ -27,16 +25,15 @@
 
 + 为了自适应不同的屏幕分辨率，我们读取设备的信息,并增加全局变量
 + app.js
-```json
-app回调中增加全局变量 sysinfo
-
+```js
+  //app回调中增加全局变量 sysinfo
     globalData: {
         sysinfo:null,
     }
     //在 onluanch中增加读取接口
     onluanch() {    
-        ...
-        try {
+      ...
+      try {
         const res = wx.getSystemInfoSync()
         console.log(res.model)
         console.log(res.pixelRatio)
