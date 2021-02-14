@@ -160,11 +160,11 @@
         // 点击分类加载对应列表
 
         $(".container").on("click", ".post_class", function () {
-            new Promise(function (resolve, reject) {
+            // new Promise(function (resolve, reject) {
                 console.log("clean container");
                 $(".container").empty();
-                resolve();
-            }).then(function () {
+                // resolve();
+            // }).then(function () {
                 console.log("new content");
                 console.log($(this).text);
                 current_list = myposts_in_class[$(this).text];
@@ -174,7 +174,7 @@
                     console.log(mypost);
                     main_page_render(index, mypost);
                 };
-            })
+            // })
 
         });
 
