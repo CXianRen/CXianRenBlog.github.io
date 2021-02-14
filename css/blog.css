@@ -17,6 +17,15 @@ a:focus {
     text-decoration: underline;
 }
 
+.header {
+    max-width: 42em;
+    /* background-color: rgb(224, 96, 22); */
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .container {
     max-width: 42em;
     /* background-color: rgb(224, 96, 22); */
