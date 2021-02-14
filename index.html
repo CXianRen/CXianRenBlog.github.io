@@ -57,13 +57,13 @@
     };
 
     //  main page post render 
-    function main_page_render(mypost) {
+    function main_page_render(postinf) {
         var a = '<div class="post">';
         a += '<h2 class="post-title">';
-        a += '<a class="ti" id="'+ mypost["url"]+'">' + mypost["name"] + '</a>';
+        a += '<a class="ti" id="'+ postinf["url"]+'">' + postinf["name"] + '</a>';
         a += '</h2>';
-        a += '<span class="post-date">' + mypost["time"] + '</span>';
-        a += '<span class="post-tags"><a>' + mypost["class"] + '</a> <a>|</a><a>' + mypost["tag"] + '</a> </span>';
+        a += '<span class="post-date">' + postinf["time"] + '</span>';
+        a += '<span class="post-tags"><a>' + postinf["class"] + '</a> <a>|</a><a>' + postinf["tag"] + '</a> </span>';
         a += '</div>';
         $(".posts").append(a);
         a = "";
@@ -108,11 +108,11 @@
             function () {
                 console.log("main page loaded ");
                 // 点击加载对应文章 (预先绑定事件)
-                $(".container").on("click", ".ti", function () {
-                    var post_name = $(this).text();
-                    console.log("clik" + post_name);
-                    //load_post(post_name);
-                })
+                // $(".container").on("click", ".ti", function () {
+                //     var post_name = $(this).text();
+                //     console.log("clik" + post_name);
+                //     //load_post(post_name);
+                // })
                 load_all_post_info(function(){
                     for (var index in myposts) {
                         var mypost=myposts[index]
