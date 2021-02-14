@@ -57,10 +57,10 @@
     };
 
     //  main page post render 
-    function main_page_render(postinf) {
+    function main_page_render(id,postinf) {
         var a = '<div class="post">';
         a += '<h2 class="post-title">';
-        a += '<a class="ti" id="'+ postinf["url"]+'">' + postinf["name"] + '</a>';
+        a += '<a class="ti" id='+id+'>' + postinf["name"] + '</a>';
         a += '</h2>';
         a += '<span class="post-date">' + postinf["time"] + '</span>';
         a += '<span class="post-tags"><a>' + postinf["class"] + '</a> <a>|</a><a>' + postinf["tag"] + '</a> </span>';
@@ -69,9 +69,11 @@
         a = "";
     }
     // load all post
-    myposts=new Array();
+    myposts=[];
     myposts_in_class={};
     myposts_in_tag={};
+    current_list=null;
+    current_index=-1;
     function load_all_post_info(callback){
         console.log("loading page name");
         $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/?private_token=9bfc4b345fd6d50bc10ddf94365e2fda0539a3b1",
@@ -96,6 +98,7 @@
                 console.log(myposts);
                 console.log(myposts_in_class);
                 console.log(myposts_in_tag);
+                current_list=myposts;
                 callback();
             }
             );
@@ -103,27 +106,27 @@
     }
     // load main page
     function load_mainpage() {    
-        current_post = "";
         $(".container").load("template/mainpage.html",
             function () {
                 console.log("main page loaded ");
                 // 点击加载对应文章 (预先绑定事件)
                 $(".container").on("click", ".ti", function () {
-                    var post_name = $(this).attr("id");
-                    console.log("clik" + post_name);
-                    load_post($(this).attr("id"));
+                    var index = $(this).attr("id");
+                    console.log("clik:"+index);
+                    current_index=index;
+                    load_post(current_list[index]["url"]);
                 })
                 load_all_post_info(function(){
                     for (var index in myposts) {
                         var mypost=myposts[index]
                         console.log(mypost);
-                        main_page_render(mypost)
+                        main_page_render(index,mypost)
                     };
                 })
             })
     };
     // load post
-    function load_post(post_name) {
+    function load_post(posturl) {
         $(".container").empty();
         // 前后 按键绑定事件
         $(".container").on("click", ".previous", function () {
@@ -145,7 +148,7 @@
         $(".container").load("template/post.html",
             function () {
                 console.log("loading container");
-                $.get("post/" + post_name, function (data, status) {
+                $.get("post/" + posturl, function (data, status) {
                     current_post = post_name;
                     $(".post-title a ").text(post_name);
                     $(".post-date").text(postdata[post_name]["date"]);
