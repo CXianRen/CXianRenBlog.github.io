@@ -166,8 +166,8 @@
                 resolve();
             }).then(function () {
                 console.log("new content");
-                console.log($(this).text());
-                current_list = myposts_in_class[$(this).text()];
+                console.log($(this).text);
+                current_list = myposts_in_class[$(this).text];
                 current_index = -1;
                 for (var index in current_list) {
                     var mypost = current_list[index];
