@@ -114,9 +114,10 @@
                 //     load_post(post_name);
                 // })
                 load_all_post_info(function(){
-                    for (var mypost in myposts) {
-                    console.log(mypost);
-                    main_page_render(mypost["name"], mypost["class"], mypost["tag"],mypost["time"])
+                    for (var index in myposts) {
+                        var mypost=myposts[index]
+                        console.log(mypost);
+                        main_page_render(mypost["name"], mypost["class"], mypost["tag"],mypost["time"])
                     };
                 })
             })
