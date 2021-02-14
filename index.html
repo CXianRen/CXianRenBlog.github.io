@@ -98,6 +98,7 @@
                     myposts_in_class[temp[1]].push({
                         "url": data[item]["name"],
                         "name": temp[0],
+                        "class": temp[1],
                         "tag": temp[2],
                         "time": temp[3]
                     });
@@ -109,6 +110,7 @@
                         "url": data[item]["name"],
                         "name": temp[0],
                         "class": temp[1],
+                        "tag": temp[2],
                         "time": temp[3]
                     });
 
@@ -161,19 +163,19 @@
 
         $(".container").on("click", ".post_class", function () {
             // new Promise(function (resolve, reject) {
-                console.log("clean container");
-                $(".posts").empty();
-                // resolve();
+            console.log("clean container");
+            $(".posts").empty();
+            // resolve();
             // }).then(function () {
-                console.log("new content");
-                console.log($(this).text());
-                current_list = myposts_in_class[$(this).text()];
-                current_index = -1;
-                for (var index in current_list) {
-                    var mypost = current_list[index];
-                    console.log(index,mypost);
-                    main_page_render(index, mypost);
-                };
+            console.log("new content");
+            console.log($(this).text());
+            current_list = myposts_in_class[$(this).text()];
+            current_index = -1;
+            for (var index in current_list) {
+                var mypost = current_list[index];
+                console.log(index, mypost);
+                main_page_render(index, mypost);
+            };
             // })
 
         });
