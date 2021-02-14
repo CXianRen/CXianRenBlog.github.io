@@ -145,7 +145,7 @@
         $(".container").load("template/post.html",
             function () {
                 console.log("loading container");
-                $.get("post/" + post_name + ".md", function (data, status) {
+                $.get("post/" + post_name, function (data, status) {
                     current_post = post_name;
                     $(".post-title a ").text(post_name);
                     $(".post-date").text(postdata[post_name]["date"]);
