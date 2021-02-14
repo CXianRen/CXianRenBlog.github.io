@@ -63,7 +63,8 @@
         a += '<a class="ti" id=' + id + '>' + postinf["name"] + '</a>';
         a += '</h2>';
         a += '<span class="post-date">' + postinf["time"] + '</span>';
-        a += '<span class="post-tags"><a class="post_class">' + postinf["class"] + '</a> <a>|</a><a class="post_tag>' + postinf["tag"] + '</a> </span>';
+        a += '<span class="post-tags"><a class="post_class">' + postinf["class"] + '</a> <a>|</a><a class="post_tag">' +
+            postinf["tag"] + '</a> </span>';
         a += '</div>';
         $(".posts").append(a);
         a = "";
@@ -126,7 +127,6 @@
         $(".container").load("template/mainpage.html",
             function () {
                 console.log("main page loaded ");
-
                 load_all_post_info(function () {
                     for (var index in myposts) {
                         var mypost = myposts[index]
@@ -159,16 +159,17 @@
 
     $(document).ready(function () {
         // 点击分类加载对应列表
-                
+
         $(".container").on("click", ".post_class", function () {
-                console.log($(this).text());
-                 current_list=myposts_in_class[$(this).text()];
-                 current_index=-1;
-                 for (var index in current_list) {
-                        var mypost = current_list[index];
-                        console.log(mypost);
-                        main_page_render(index, mypost);
-                    };
+            $(".container").empty();
+            console.log($(this).text());
+            current_list = myposts_in_class[$(this).text()];
+            current_index = -1;
+            for (var index in current_list) {
+                var mypost = current_list[index];
+                console.log(mypost);
+                main_page_render(index, mypost);
+            };
         });
 
         // 点击加载对应文章 (预先绑定事件)
