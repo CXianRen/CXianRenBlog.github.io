@@ -108,11 +108,11 @@
             function () {
                 console.log("main page loaded ");
                 // 点击加载对应文章 (预先绑定事件)
-                // $(".container").on("click", ".ti", function () {
-                //     var post_name = $(this).text();
-                //     console.log("clik" + post_name);
-                //     //load_post(post_name);
-                // })
+                $(".container").on("click", ".ti", function () {
+                    var post_name = $(this).attr("id");
+                    console.log("clik" + post_name);
+                    load_post($(this).attr("id"));
+                })
                 load_all_post_info(function(){
                     for (var index in myposts) {
                         var mypost=myposts[index]
