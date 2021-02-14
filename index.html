@@ -127,7 +127,7 @@
             })
     };
     // load post
-    function load_post(posturl) {
+    function load_post(id) {
         $(".container").empty();
         // 前后 按键绑定事件
         $(".container").on("click", ".previous", function () {
@@ -149,12 +149,11 @@
         $(".container").load("template/post.html",
             function () {
                 console.log("loading container");
-                $.get("post/" + posturl, function (data, status) {
-                    current_post = post_name;
-                    $(".post-title a ").text(post_name);
-                    $(".post-date").text(postdata[post_name]["date"]);
-                    $(".ca").text(postdata[post_name]["class"]);
-                    $(".ta").text(postdata[post_name]["tag"]);
+                $.get("post/" + current_list[id]["url"], function (data, status) {
+                    $(".post-title a ").text(current_list[id]["name"]);
+                    $(".post-date").text(current_list[id]["time"]);
+                    $(".ca").text(current_list[id]["class"]);
+                    $(".ta").text(current_list[id]["tag"]);
                     // 渲染 readme
                     mdToHml(data);
                 })
