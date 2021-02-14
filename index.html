@@ -142,7 +142,6 @@
     function load_post(id) {
         $(".container").empty();
 
-
         $(".container").load("template/post.html",
             function () {
                 console.log("loading container");
@@ -161,15 +160,21 @@
         // 点击分类加载对应列表
 
         $(".container").on("click", ".post_class", function () {
-            $(".container").empty();
-            console.log($(this).text());
-            current_list = myposts_in_class[$(this).text()];
-            current_index = -1;
-            for (var index in current_list) {
-                var mypost = current_list[index];
-                console.log(mypost);
-                main_page_render(index, mypost);
-            };
+            var f = new Promise(function () {
+                console.log("clean container");
+                $(".container").empty();
+            });
+            f.then(function () {
+                console.log($(this).text());
+                current_list = myposts_in_class[$(this).text()];
+                current_index = -1;
+                for (var index in current_list) {
+                    var mypost = current_list[index];
+                    console.log(mypost);
+                    main_page_render(index, mypost);
+                };
+            })
+
         });
 
         // 点击加载对应文章 (预先绑定事件)
