@@ -114,7 +114,7 @@
                     var index =Number($(this).attr("id"));
                     console.log("clik:"+index);
                     current_index=index;
-                    load_post(id);
+                    load_post(index);
                 })
                 load_all_post_info(function(){
                     for (var index in myposts) {
