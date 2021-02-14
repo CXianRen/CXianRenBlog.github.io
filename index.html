@@ -72,7 +72,7 @@
     myposts=[];
     myposts_in_class={};
     myposts_in_tag={};
-    current_list=null;
+    current_list=[];
     current_index=-1;
     function load_all_post_info(callback){
         console.log("loading page name");
@@ -114,6 +114,7 @@
                     var index =Number($(this).attr("id"));
                     console.log("clik:"+index);
                     current_index=index;
+                    console.log(current_list[index]["url"]);
                     load_post(current_list[index]["url"]);
                 })
                 load_all_post_info(function(){
