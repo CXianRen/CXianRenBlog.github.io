@@ -130,16 +130,18 @@
         $(".container").empty();
         // 前后 按键绑定事件
         $(".container").on("click", ".previous", function () {
-            if (postdata[current_post]["pre"] != "") {
-                load_post(postdata[current_post]["pre"]);
+            if (current_index-1>=0) {
+                current_index-=1;
+                load_post(current_index);
             } else {
                 console.log("no more post")
             }
         });
 
         $(".container").on("click", ".next", function () {
-            if (postdata[current_post]["next"] != "") {
-                load_post(postdata[current_post]["next"]);
+            if (current_index+1<=current_list.length-1) {
+                current_index+=1;
+                load_post(current_index);
             } else {
                 console.log("no more post")
             }
