@@ -160,7 +160,6 @@
 
     $(document).ready(function () {
         // 点击分类加载对应列表
-
         $(".container").on("click", ".post_class", function () {
             // new Promise(function (resolve, reject) {
             console.log("clean container");
@@ -176,9 +175,27 @@
                 console.log(index, mypost);
                 main_page_render(index, mypost);
             };
+        });
+
+        $(".container").on("click", ".post_tag", function () {
+            // new Promise(function (resolve, reject) {
+            console.log("clean container");
+            $(".posts").empty();
+            // resolve();
+            // }).then(function () {
+            console.log("new content");
+            console.log($(this).text());
+            current_list = myposts_in_tag[$(this).text()];
+            current_index = -1;
+            for (var index in current_list) {
+                var mypost = current_list[index];
+                console.log(index, mypost);
+                main_page_render(index, mypost);
+            };
             // })
 
         });
+
 
         // 点击加载对应文章 (预先绑定事件)
         $(".container").on("click", ".ti", function () {
