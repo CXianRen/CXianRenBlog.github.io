@@ -111,7 +111,7 @@
                 console.log("main page loaded ");
                 // 点击加载对应文章 (预先绑定事件)
                 $(".container").on("click", ".ti", function () {
-                    var index = $(this).attr("id");
+                    var index =Number($(this).attr("id"));
                     console.log("clik:"+index);
                     current_index=index;
                     load_post(current_list[index]["url"]);
