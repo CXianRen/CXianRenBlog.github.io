@@ -36,10 +36,45 @@ public:
 // res 480ms 24Mb 
 ```
 
+```c++
+//中心扩展思想
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int max_i=0,max_j=0;
+        int temp_i=0,temp_j=0;
+        for(int i=0;i<=s.size()-1;i++){
+            //遍历每个字符
+            temp_i=i;
+            temp_j=i;
+            //连续相同
+            while(temp_j<=s.size()-1&&s[temp_i]==s[temp_j]){
+                temp_j++;
+            }
+            temp_j--;
+            //非连续相同
+            while(temp_i>=0&&temp_j<s.size()){
+                if(s[temp_i]!=s[temp_j])break;  //往外扩展
+                temp_i-=1;
+                temp_j+=1;
+            }
+            temp_i+=1;
+            temp_j-=1;
+            if((temp_j-temp_i)>max_j-max_i){
+                max_i=temp_i;
+                max_j=temp_j;
+            }
+        }
+        return s.substr(max_i,max_j-max_i+1);
+    }
+};
+//res 16ms 6.9Mb
+```
+
 ### 思考:
 > DP的思考: 自定向下找出 递归式, 然后自底向下写, 从最小元素开始, 然后添加边界
 
-
+> 使用下标来作为while的判断,结束后一般需要加回去or减回去
 
 
 
