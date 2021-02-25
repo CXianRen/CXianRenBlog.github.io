@@ -43,8 +43,32 @@ public:
 ```
 ```c++
 //优雅点的解法
-```
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        if(numRows==1)return s;
 
+        string res; 
+        int nums_in_group=numRows*2-2;
+        int n=s.size();
+
+        for(int i=0;i<numRows;i++){
+            for(int j=0;j+i<n;j+=nums_in_group){
+                    //头行&&尾行
+                res+=s[j+i];
+                    //中间行需要加一个
+                if(i!=0 && i!=numRows-1 && j+nums_in_group-i<n)
+                    res+=s[j+nums_in_group-i];
+            }
+        }
+        return res;
+    }
+};
+// 优化了==1的情况，直接返回，不用判断
+// 使用偏移的思想,就不需要多一个变量了
+// 中间的行只多一个，所以只要判断一次
+// res 8ms 8Mb
+```
 
 ### 思考:
 >
