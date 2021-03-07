@@ -28,7 +28,7 @@ void select_sort(T arr[],int len){
     int min_index;
     for(int i=0;i<len-1;i++){
         min_index=i;
-        for(int j=i;j<len-1;j++){
+        for(int j=i;j<len;j++){
             min_index=arr[min_index]>arr[j]?j:min_index;
         }
         swap(arr[i],arr[min_index]);
