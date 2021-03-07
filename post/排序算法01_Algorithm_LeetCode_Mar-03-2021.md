@@ -36,7 +36,26 @@ void select_sort(T arr[],int len){
 }
 ```
 
-
+### 插入排序
+![](https://www.runoob.com/wp-content/uploads/2019/03/insertionSort.gif)
+```c++
++ 反向比较交换位
+template <typename T>
+void insert_sort(vector<int> list){
+    int temp;
+    for(int i=0;i<list.size();i++){
+        temp=list[i];
+        for(int j=i-1;j>=0;j--){
+           if(list[j]>temp){
+               list[j+1]=list[j];
+               list[j]=temp;
+           }else{
+               break;
+           }
+        }
+    }
+}
+```
 
 
 
