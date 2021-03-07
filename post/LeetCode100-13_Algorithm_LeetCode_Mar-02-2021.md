@@ -37,7 +37,7 @@ public:
             if(st.find(s[i])!=st.end())continue; 
             st.insert(s[i]);
 
-            swap(s[x],s[i]); //每层深搜都固定一个位置,然后通过交换产生新的字符串给
+            swap(s[x],s[i]); //每层深搜都固定一个位置,然后通过交换产生新的字符串
             dfs(s,x+1);
             swap(s[x],s[i]);
         }
