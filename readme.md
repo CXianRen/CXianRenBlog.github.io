@@ -15,8 +15,10 @@
 + load_mainpage()
 
 ### todo
-+ 如何实现按时间排序？
++ 如何实现按时间排序:https://api.github.com/repos/CXianRen/CXianRen.github.io/commits?path=post/LeetCode100-13_Algorithm_LeetCode_Mar-02-2021.md&page=1&per_page=1
+
 + 最大访问限制问题
+
 + 增加总共分类
 + 最大显示数
 
@@ -27,5 +29,7 @@
 ### load_all_post_info
 + get:https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/
 
+### references
++ https://segmentfault.com/a/1190000015144126
 
 
