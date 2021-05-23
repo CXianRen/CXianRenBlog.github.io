@@ -40,6 +40,8 @@
     </div>
 </body>
 <script>
+    TOKEN_1="ghp_gVlYIPaQhJkOWJ"
+    TOKEN_2="vZEbdktP3zbfL7U3BVgbd"
     // markdown 转 html 
     function mdToHml(content) {
         //先对容器初始化，在需要展示的容器中创建textarea隐藏标签，
@@ -78,11 +80,13 @@
 
     function load_all_post_info(callback) {
         console.log("loading page name");
-        $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/?private_token=9bfc4b345fd6d50bc10ddf94365e2fda0539a3b1",
+        $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/?private_token="+TOKEN_1+"x"+TOKEN_2,
             function (data, status) {
+                idx=0;
                 for (item in data) {
                     //console.log(data[item])
                     var temp = data[item]["name"].split(".")[0].split("_");
+                    console.log("name:",data[item]["name"])
                     myposts.push({
                         "url": data[item]["name"],
                         "name": temp[0],
@@ -90,36 +94,41 @@
                         "tag": temp[2],
                         "time": temp[3]
                     });
+                    $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/commits?path=post/"+
+                            data[item]["name"]+"&page=1&per_page=1",function(data,status){
+                                console.log(myposts[idx],"request:",data[0]["commit"]["committer"]["date"])
+                            })
+                    idx+=1
                     // console.log("type:"+typeof(myposts_in_class[temp[1]]))
-                    if (myposts_in_class[temp[1]] === undefined) {
-                        console.log("undefine");
-                        myposts_in_class[temp[1]] = new Array();
-                    }
-                    myposts_in_class[temp[1]].push({
-                        "url": data[item]["name"],
-                        "name": temp[0],
-                        "class": temp[1],
-                        "tag": temp[2],
-                        "time": temp[3]
-                    });
+                    // if (myposts_in_class[temp[1]] === undefined) {
+                    //     console.log("undefine");
+                    //     myposts_in_class[temp[1]] = new Array();
+                    // }
+                    // myposts_in_class[temp[1]].push({
+                    //     "url": data[item]["name"],
+                    //     "name": temp[0],
+                    //     "class": temp[1],
+                    //     "tag": temp[2],
+                    //     "time": temp[3]
+                    // });
 
-                    if (myposts_in_tag[temp[2]] === undefined) {
-                        myposts_in_tag[temp[2]] = new Array();
-                    }
-                    myposts_in_tag[temp[2]].push({
-                        "url": data[item]["name"],
-                        "name": temp[0],
-                        "class": temp[1],
-                        "tag": temp[2],
-                        "time": temp[3]
-                    });
+                    // if (myposts_in_tag[temp[2]] === undefined) {
+                    //     myposts_in_tag[temp[2]] = new Array();
+                    // }
+                    // myposts_in_tag[temp[2]].push({
+                    //     "url": data[item]["name"],
+                    //     "name": temp[0],
+                    //     "class": temp[1],
+                    //     "tag": temp[2],
+                    //     "time": temp[3]
+                    // });
 
                 }
-                console.log(myposts);
-                console.log(myposts_in_class);
-                console.log(myposts_in_tag);
-                current_list = myposts;
-                callback();
+                // console.log(myposts);
+                // console.log(myposts_in_class);
+                // console.log(myposts_in_tag);
+                // current_list = myposts;
+                // callback();
             }
         );
 
@@ -195,7 +204,6 @@
             // })
 
         });
-
 
         // 点击加载对应文章 (预先绑定事件)
         $(".container").on("click", ".ti", function () {

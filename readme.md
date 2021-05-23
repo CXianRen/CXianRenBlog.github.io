@@ -33,3 +33,11 @@
 + https://segmentfault.com/a/1190000015144126
 
 
+### Q & A
+Q: cannot access file from local : 
+A: add "--allow-access-file-from-files", can not work in Chrome but edge
+
+Q: get回调函数传自定义参数
+A:
+
+PS: TOKEN不能出现在代码中, github会自动检测,所以要拆开
