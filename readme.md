@@ -38,6 +38,12 @@ Q: cannot access file from local :
 A: add "--allow-access-file-from-files", can not work in Chrome but edge
 
 Q: get回调函数传自定义参数
-A:
+A: 匿名函数的方式
+
+Q: win10 vscode 快捷对齐 
+A: alt+shift+f
+
+Q: 如何根据时间排序
 
 PS: TOKEN不能出现在代码中, github会自动检测,所以要拆开
+

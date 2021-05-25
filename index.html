@@ -28,7 +28,8 @@
 <body>
     <div class="header">
         <h1 style="margin-left: 20px; margin-bottom: 0px;"><a href="https://cxianren.github.io/">闲人 > CXR</a></h1>
-        <a style="margin-left: 30px;" href="https://github.com/CXianRen">Github</a><a style="margin-left: 10px; color: #ccc;">|</a>
+        <a style="margin-left: 30px;" href="https://github.com/CXianRen">Github</a><a
+            style="margin-left: 10px; color: #ccc;">|</a>
         <a style="margin-left: 30px;">me</a>
         <hr>
     </div>
@@ -40,8 +41,8 @@
     </div>
 </body>
 <script>
-    TOKEN_1="ghp_gVlYIPaQhJkOWJ"
-    TOKEN_2="vZEbdktP3zbfL7U3BVgbd"
+    TOKEN_1 = "ghp_gVlYIPaQhJkOWJ"
+    TOKEN_2 = "vZEbdktP3zbfL7U3BVgbd"
     // markdown 转 html 
     function mdToHml(content) {
         //先对容器初始化，在需要展示的容器中创建textarea隐藏标签，
@@ -80,25 +81,43 @@
 
     function load_all_post_info(callback) {
         console.log("loading page name");
-        $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/?private_token="+TOKEN_1+"x"+TOKEN_2,
+        $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/?private_token=" + TOKEN_1 + "x" +
+            TOKEN_2,
             function (data, status) {
-                idx=0;
+                idx = 0;
                 for (item in data) {
-                    //console.log(data[item])
-                    var temp = data[item]["name"].split(".")[0].split("_");
-                    console.log("name:",data[item]["name"])
-                    myposts.push({
-                        "url": data[item]["name"],
-                        "name": temp[0],
-                        "class": temp[1],
-                        "tag": temp[2],
-                        "time": temp[3]
-                    });
-                    $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/commits?path=post/"+
-                            data[item]["name"]+"&page=1&per_page=1",function(data,status){
-                                console.log(myposts[idx],"request:",data[0]["commit"]["committer"]["date"])
+                    (function (item, id) {
+                        // to get time of an post and push into buff
+                        var temp = data[item]["name"].split(".")[0].split("_");
+                        console.log("name:", data[item]["name"])
+                        $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/commits?private_token=" +
+                            TOKEN_1 + "x" +
+                            TOKEN_2, "&path = post / " +
+                            data[item]["name"] + "&page=1&per_page=1",
+                            function (sdata, status) {
+                                try {
+                                    sdata = sdata[0]["commit"]["committer"]["date"]
+                                    var time = new Date();
+                                    var time_YYMMDD = sdata.split("T")[0].split("-");
+                                    var time_HHMMSS = sdata.split("T")[1].split("Z")[0].split(":")
+                                    time.setFullYear(time_YYMMDD[0], time_YYMMDD[1], time_YYMMDD[2]);
+                                    time.setHours(time_HHMMSS[0], time_HHMMSS[1], time_HHMMSS[2]);
+                                    myposts.push({
+                                        "url": data[item]["name"],
+                                        "name": temp[0],
+                                        "class": temp[1],
+                                        "tag": temp[2],
+                                        "time": time
+                                    });
+                                } catch (error) {
+                                    console.log(temp[0], "request error")
+                                }
                             })
-                    idx+=1
+                    })(item, idx);
+                    idx += 1
+                    myposts.sort(function (a, b) {
+                        a["time"] - b["time"]
+                    })
                     // console.log("type:"+typeof(myposts_in_class[temp[1]]))
                     // if (myposts_in_class[temp[1]] === undefined) {
                     //     console.log("undefine");
@@ -124,7 +143,7 @@
                     // });
 
                 }
-                // console.log(myposts);
+                console.log(myposts);
                 // console.log(myposts_in_class);
                 // console.log(myposts_in_tag);
                 // current_list = myposts;
