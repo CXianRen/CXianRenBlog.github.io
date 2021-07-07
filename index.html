@@ -100,22 +100,22 @@
                         // to get time of an post and push into buff
                         // some bug here
                         var temp = data[item]["name"].split(".")[0].split("_");
-                        console.log("name:", data[item]["name"])
+                        // console.log("name:", data[item]["name"])
                         mget("https://api.github.com/repos/CXianRen/CXianRen.github.io/commits" +
                             "?path=post/" +
                             data[item]["name"] + "&page=1&per_page=1",
                             function (sdata, status) {
                                 try {
-                                    console.log(sdata)
-                                    console.log(data[item]["name"], sdata[0]["commit"]["committer"]["date"])
+                                    // console.log(sdata)
+                                    // console.log(data[item]["name"], sdata[0]["commit"]["committer"]["date"])
                                     sdata = sdata[0]["commit"]["committer"]["date"]
                                     var time = new Date();
-                                    console.log(time)
+                                    // console.log(time)
                                     var time_YYMMDD = sdata.split("T")[0].split("-");
                                     var time_HHMMSS = sdata.split("T")[1].split("Z")[0].split(":")
                                     time.setFullYear(time_YYMMDD[0], time_YYMMDD[1], time_YYMMDD[2]);
                                     time.setHours(time_HHMMSS[0], time_HHMMSS[1], time_HHMMSS[2]);
-                                    console.log(time)
+                                    // console.log(time)
                                     myposts.push({
                                         "url": data[item]["name"],
                                         "name": temp[0],
