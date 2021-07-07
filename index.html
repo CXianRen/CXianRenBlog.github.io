@@ -73,13 +73,13 @@
         a = "";
     }
     // load all post 
-    load_page=0;
+    load_page = 0;
     myposts = [];
     myposts_in_class = {};
     myposts_in_tag = {};
     current_list = [];
     current_index = -1;
-    
+
 
     function load_all_post_info(callback) {
         console.log("loading page name");
@@ -98,7 +98,7 @@
                             data[item]["name"] + "&page=1&per_page=1",
                             function (sdata, status) {
                                 try {
-                                    console.log(data[item]["name"],sdata[0]["commit"]["committer"]["date"])
+                                    console.log(data[item]["name"], sdata[0]["commit"]["committer"]["date"])
                                     sdata = sdata[0]["commit"]["committer"]["date"]
                                     var time = new Date();
                                     var time_YYMMDD = sdata.split("T")[0].split("-");
@@ -112,7 +112,39 @@
                                         "tag": temp[2],
                                         "time": time
                                     });
-                                    myposts.sort(function (a, b) {a["time"] - b["time"]})
+
+                                    if (myposts_in_class[temp[1]] === undefined) {
+                                        console.log("undefine");
+                                        myposts_in_class[temp[1]] = new Array();
+                                    }
+                                    myposts_in_class[temp[1]].push({
+                                        "url": data[item]["name"],
+                                        "name": temp[0],
+                                        "class": temp[1],
+                                        "tag": temp[2],
+                                        "time": time
+                                    });
+
+                                    if (myposts_in_tag[temp[2]] === undefined) {
+                                        myposts_in_tag[temp[2]] = new Array();
+                                    }
+                                    myposts_in_tag[temp[2]].push({
+                                        "url": data[item]["name"],
+                                        "name": temp[0],
+                                        "class": temp[1],
+                                        "tag": temp[2],
+                                        "time": time
+                                    });
+
+                                    myposts.sort(function (a, b) {
+                                        a["time"] - b["time"]
+                                    })
+                                    // myposts_in_class.sort(function (a, b) {
+                                    //     a["time"] - b["time"]
+                                    // })
+                                    // myposts_in_tag.sort(function (a, b) {
+                                    //     a["time"] - b["time"]
+                                    // })
                                     $(".posts").empty()
                                     callback();
                                 } catch (error) {
@@ -120,40 +152,12 @@
                                 }
                             })
                     })(_item);
-                    
-                    // console.log("type:"+typeof(myposts_in_class[temp[1]]))
-                    // if (myposts_in_class[temp[1]] === undefined) {
-                    //     console.log("undefine");
-                    //     myposts_in_class[temp[1]] = new Array();
-                    // }
-                    // myposts_in_class[temp[1]].push({
-                    //     "url": data[item]["name"],
-                    //     "name": temp[0],
-                    //     "class": temp[1],
-                    //     "tag": temp[2],
-                    //     "time": temp[3]
-                    // });
 
-                    // if (myposts_in_tag[temp[2]] === undefined) {
-                    //     myposts_in_tag[temp[2]] = new Array();
-                    // }
-                    // myposts_in_tag[temp[2]].push({
-                    //     "url": data[item]["name"],
-                    //     "name": temp[0],
-                    //     "class": temp[1],
-                    //     "tag": temp[2],
-                    //     "time": temp[3]
-                    // });
+                    // console.log("type:"+typeof(myposts_in_class[temp[1]]))
+
 
                 }
                 console.log(myposts);
-                // console.log(myposts_in_class);
-                // console.log(myposts_in_tag);
-                // current_list = myposts;
-                // while( load_flag != idx) {
-                //     console.log("loadf_flag:",load_flag," idx: ",idx);
-                // }
-                
             }
         );
     }
