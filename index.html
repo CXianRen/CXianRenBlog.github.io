@@ -72,22 +72,24 @@
         $(".posts").append(a);
         a = "";
     }
-    // load all post
+    // load all post 
+    load_page=0;
     myposts = [];
     myposts_in_class = {};
     myposts_in_tag = {};
     current_list = [];
     current_index = -1;
+    
 
     function load_all_post_info(callback) {
         console.log("loading page name");
         $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/contents/post/?private_token=" + TOKEN_1 + "x" +
             TOKEN_2,
             function (data, status) {
-                idx = 0;
-                for (item in data) {
-                    (function (item, id) {
+                for (_item in data) {
+                    (function (item) {
                         // to get time of an post and push into buff
+                        // some bug here
                         var temp = data[item]["name"].split(".")[0].split("_");
                         console.log("name:", data[item]["name"])
                         $.get("https://api.github.com/repos/CXianRen/CXianRen.github.io/commits?private_token=" +
@@ -96,6 +98,7 @@
                             data[item]["name"] + "&page=1&per_page=1",
                             function (sdata, status) {
                                 try {
+                                    console.log(data[item]["name"],sdata[0]["commit"]["committer"]["date"])
                                     sdata = sdata[0]["commit"]["committer"]["date"]
                                     var time = new Date();
                                     var time_YYMMDD = sdata.split("T")[0].split("-");
@@ -109,15 +112,15 @@
                                         "tag": temp[2],
                                         "time": time
                                     });
+                                    myposts.sort(function (a, b) {a["time"] - b["time"]})
+                                    $(".posts").empty()
+                                    callback();
                                 } catch (error) {
                                     console.log(temp[0], "request error")
                                 }
                             })
-                    })(item, idx);
-                    idx += 1
-                    myposts.sort(function (a, b) {
-                        a["time"] - b["time"]
-                    })
+                    })(_item);
+                    
                     // console.log("type:"+typeof(myposts_in_class[temp[1]]))
                     // if (myposts_in_class[temp[1]] === undefined) {
                     //     console.log("undefine");
@@ -147,10 +150,12 @@
                 // console.log(myposts_in_class);
                 // console.log(myposts_in_tag);
                 // current_list = myposts;
-                // callback();
+                // while( load_flag != idx) {
+                //     console.log("loadf_flag:",load_flag," idx: ",idx);
+                // }
+                
             }
         );
-
     }
     // load main page
     function load_mainpage() {
@@ -160,7 +165,7 @@
                 load_all_post_info(function () {
                     for (var index in myposts) {
                         var mypost = myposts[index]
-                        console.log(mypost);
+                        // console.log(mypost);
                         main_page_render(index, mypost)
                     };
                     current_list = myposts;
