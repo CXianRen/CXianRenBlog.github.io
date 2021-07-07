@@ -4,6 +4,7 @@
 ### 解
 ```c++
 //第一思路,直接行排列
+
 class Solution {
 public:
     string convert(string s, int numRows) {
